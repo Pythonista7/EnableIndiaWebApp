@@ -1,0 +1,62 @@
+<!DOCTYPE HTML">
+<html>
+
+
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    
+
+<body>
+
+<h1>HOME PAGE</h1>
+
+<h2> Select Attribute </h2>
+
+<body>
+
+    <form action="/home" method="POST" enctype="multipart/form-data">
+ 
+   
+        <fieldset for="attributes1">
+                <select name= attributes1 >
+                    {% for ele in data %}
+                    <option value= "{{ele}}" SELECTED>{{ele}}</option>"
+                    {% endfor %}
+                </select>
+
+                <br>
+        </fieldset>
+        <fieldset for="attributes2">
+                <select name= attributes2 >
+                    {% for ele in data %}
+                    <option value= "{{ele}}" SELECTED>{{ele}}</option>"
+                    {% endfor %}
+                </select>
+                <br>
+        </fieldset>
+        <fieldset for="attributes3">
+                <select name= attributes3 >
+                    {% for ele in data %}
+                    <option value= "{{ele}}" SELECTED>{{ele}}</option>"
+                    {% endfor %}
+                </select>
+                <br>
+        </fieldset>
+               
+        <fieldset for="attributes4">
+                <select name= attributes4 >
+                    {% for ele in data %}
+                    <option value= "{{ele}}" SELECTED>{{ele}}</option>"
+                    {% endfor %}
+                </select>
+        </fieldset>
+                <br>
+                <input type="submit" value="Submit">
+
+    </form>
+
+
+<hr/>
+
+</body>
+</html>
