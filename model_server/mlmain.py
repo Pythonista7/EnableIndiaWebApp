@@ -6,7 +6,7 @@ import json
 labels:['highest_education_S.S.L.C', 'disability_type_MR (Mental Retardation)', 'recommended_job_types_SEMI SKILLED MORE INTERACTION', 'disability_sub_type_PROFOUND (wheelchair+helper/other disability)']
 """
 
-from EIML.EIML import EIML
+from .EIML.EIML import EIML
 
 
 mlapp=Flask(__name__)
@@ -48,5 +48,5 @@ def predict():
 
 
 
-if __name__ == '__main__':
-	mlapp.run(host='127.0.0.1',port=9090,debug=False)
+# if __name__ == '__main__':
+# 	mlapp.run(host='127.0.0.1',port=9090,debug=False)

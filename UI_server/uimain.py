@@ -3,7 +3,7 @@ import json
 
 import requests as req
 
-
+X_names=json.load(open("UI_server/X_names.json"))#Flask/X_names.json
 uiapp=Flask(__name__)
 uiapp.static_folder = 'static'
 
@@ -51,13 +51,12 @@ def login_view():
 @uiapp.route("/home",methods=["GET","POST"])
 def home_view():	
 	if request.method=="GET":
-		
 		return render_template("home_page.html",data=X_names.values())
 	
 	if request.method=="POST":
 		data=request.form.values()
 		attr=list(data)
-		res=req.post("http://localhost:9090/api/predict",json={'labels':attr})
+		res=req.post("http://localhost:5000/api/predict",json={'labels':attr})
 		res=res.json()['res']
 		
 		return render_template("jobs.html",jobs=json.loads(res))
@@ -66,6 +65,6 @@ def home_view():
 
 
 
-if __name__ == '__main__':
-	X_names=json.load(open("X_names.json"))
-	uiapp.run(host='127.0.0.1',port=8080,debug=False)
+# if __name__ == '__main__':
+# 	X_names=json.load(open("X_names.json"))
+# 	uiapp.run(host='127.0.0.1',port=8080,debug=False)

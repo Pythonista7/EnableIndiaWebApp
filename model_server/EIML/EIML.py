@@ -17,10 +17,10 @@ import json
 #model._make_predict_function()
 class EIML:
     
-    def __init__(self,model_file='EIML/EINetV2_2.h5'):
+    def __init__(self,model_file='model_server/EIML/EINetV2_2.h5'):
         self.model=models.load_model(model_file)
-        self.X_names=json.load(open("EIML/X_names.json","r"))
-        self.y_names=json.load(open("EIML/y_names.json","r"))
+        self.X_names=json.load(open("model_server/EIML/X_names.json","r"))
+        self.y_names=json.load(open("model_server/EIML/y_names.json","r"))
         self.label_to_index_dict={l:i for i,l in self.X_names.items()}
         #self.model._make_predict_function()
         
