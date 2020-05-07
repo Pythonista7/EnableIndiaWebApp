@@ -20,7 +20,9 @@
         <fieldset for="attributes1">
                 <select name= attributes1 >
                     {% for ele in data %}
-                    <option value= "{{ele}}" SELECTED>{{ele}}</option>"
+                    {% if 'recommended_job_types' in ele%}
+                    <option value= "{{ele}}" SELECTED>{{ele.replace('recommended_job_types_','')}}</option>"
+                    {%endif%}
                     {% endfor %}
                 </select>
 
@@ -29,7 +31,9 @@
         <fieldset for="attributes2">
                 <select name= attributes2 >
                     {% for ele in data %}
-                    <option value= "{{ele}}" SELECTED>{{ele}}</option>"
+                    {% if 'highest_education_' in ele%}
+                    <option value= "{{ele}}" SELECTED>{{ele.replace('highest_education_','')}}</option>"
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <br>
@@ -37,16 +41,20 @@
         <fieldset for="attributes3">
                 <select name= attributes3 >
                     {% for ele in data %}
-                    <option value= "{{ele}}" SELECTED>{{ele}}</option>"
+                    {% if 'disability_sub_type_' in ele%}
+                    <option value= "{{ele}}" SELECTED>{{ele.replace('disability_sub_type_','')}}</option>"
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <br>
         </fieldset>
-               
+
         <fieldset for="attributes4">
                 <select name= attributes4 >
                     {% for ele in data %}
-                    <option value= "{{ele}}" SELECTED>{{ele}}</option>"
+                    {%if 'disability_type_' in ele %}
+                    <option value= "{{ele}}" SELECTED>{{ele.replace('disability_type_','')}}</option>"
+                    {% endif %}
                     {% endfor %}
                 </select>
         </fieldset>
