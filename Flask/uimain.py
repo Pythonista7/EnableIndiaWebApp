@@ -4,21 +4,21 @@ import json
 import requests as req
 
 
-app=Flask(__name__)
-app.static_folder = 'static'
+uiapp=Flask(__name__)
+uiapp.static_folder = 'static'
 
 
-@app.route("/")
+@uiapp.route("/")
 def landing():
 	return  redirect("/home")
 
-@app.route("/signup")
+@uiapp.route("/signup")
 def admin():
 	import json
 	return render_template('signup.html',status='status')
 
 
-@app.route("/backend/create_user",methods=['POST'])
+@uiapp.route("/backend/create_user",methods=['POST'])
 def create_user():
 	data=request.form 
 	#use name tag html-attribute to reference form data, ex- to get username use request.form["Username"] 
@@ -35,7 +35,7 @@ def create_user():
 	return redirect("/login")
 
 
-@app.route("/login",methods=["GET","POST"])
+@uiapp.route("/login",methods=["GET","POST"])
 def login_view():
 
 	if request.method == "GET":
@@ -48,7 +48,7 @@ def login_view():
 		#possibly add a cookie to persisten login session
 		return redirect("/home")
 
-@app.route("/home",methods=["GET","POST"])
+@uiapp.route("/home",methods=["GET","POST"])
 def home_view():	
 	if request.method=="GET":
 		
@@ -68,4 +68,4 @@ def home_view():
 
 if __name__ == '__main__':
 	X_names=json.load(open("X_names.json"))
-	app.run(host='127.0.0.1',port=8080,debug=False)
+	uiapp.run(host='127.0.0.1',port=8080,debug=False)

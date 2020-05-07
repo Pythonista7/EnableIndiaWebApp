@@ -9,11 +9,11 @@ labels:['highest_education_S.S.L.C', 'disability_type_MR (Mental Retardation)', 
 from EIML.EIML import EIML
 
 
-app=Flask(__name__)
-app.static_folder = 'static'
+mlapp=Flask(__name__)
+mlapp.static_folder = 'static'
 
 
-@app.route("/api/Attributes",methods=["GET"])
+@mlapp.route("/api/Attributes",methods=["GET"])
 def get_Attributes():
 	try:
 		with open('EIML/X_names.json') as f:
@@ -22,7 +22,7 @@ def get_Attributes():
 		file_data = "could not read file"
 	return jsonify(file_data)
 
-@app.route("/api/Jobs",methods=["GET"])
+@mlapp.route("/api/Jobs",methods=["GET"])
 def get_Jobs():
 	try:
 		with open('EIML/y_names.json') as f:
@@ -31,7 +31,7 @@ def get_Jobs():
 		file_data = "could not read file"
 	return jsonify(file_data)
 
-@app.route("/api/predict",methods=["POST"])
+@mlapp.route("/api/predict",methods=["POST"])
 def predict():	
 
 	if request.method=="POST":
@@ -49,4 +49,4 @@ def predict():
 
 
 if __name__ == '__main__':
-	app.run(host='127.0.0.1',port=9090,debug=False)
+	mlapp.run(host='127.0.0.1',port=9090,debug=False)
