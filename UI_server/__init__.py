@@ -6,9 +6,7 @@ import requests as req
 
 import sqlite3
 #connect to the database
-conn = sqlite3.connect('signupinfo.db')
-print("successfully connected") #check console log
-c = conn.cursor()
+
 
 def create_app():
     app_name = 'uiapp'
@@ -34,7 +32,9 @@ def create_app():
         data=request.form 
         #use name tag html-attribute to reference form data, ex- to get username use request.form["Username"] 
         # reference admin.html for the form attributes 
-
+        conn = sqlite3.connect('signupinfo.db')
+        print("\n\nsuccessfully connected") #check console log
+        c = conn.cursor()
         print("All data from the form ",data) # check console log
         name = request.form['name']
         email = request.form['email']
@@ -45,7 +45,8 @@ def create_app():
         #check if password and con_password match
         if cp == password:
             #use a sqlite or other DB to store data entered in the form
-            sql = "INSERT INTO RegisteredUsers Name=?, Email=?, PhoneNumber=?, Username=?, Password=?"
+            #sql = "INSERT INTO RegisteredUsers(Name=?, Email=?, Phone=?, Username=?, Password=?"
+            sql = "INSERT INTO RegisteredUsers(Name, Email, Phone, Username, Password) VALUES(?,?,?,?,?)"
             c.execute(sql, (name, email, phno, username, password))
             conn.commit()
         else:
@@ -54,13 +55,18 @@ def create_app():
 
         return redirect("/login")
 
-
+    """
+CREATE TABLE "RegisteredUsers" ( "Name" TEXT, "Email" TEXT, "Phone" NUMERIC, "Username" TEXT, "Password" TEXT, PRIMARY KEY("Username","Email") )
+    """
     @uiapp.route("/login",methods=["GET","POST"])
     def login_view():
 
         if request.method == "GET":
             return render_template("login.html")
 
+        conn = sqlite3.connect('signupinfo.db')
+        print("successfully connected") #check console log
+        c = conn.cursor()
         if request.method == "POST":
             username=request.form["username"]
             password=request.form["password"]
@@ -77,17 +83,17 @@ def create_app():
     @uiapp.route("/home",methods=["GET","POST"])
     def home_view():	
         if request.method=="GET":
-            return render_template("home_page.html",data=X_names.values())
+            return render_template("input.html",data=X_names.values())
         
         if request.method=="POST":
             print("\n\n POSTED \n\n ")
             data=request.form.values()
             attr=list(data)
-            print(attr)
-            res=req.post("https://eiapp.herokuapp.com/ml/api/predict",json={'labels':attr})
+            print(attr) #https://eiapp.herokuapp.com/
+            res=req.post("https://eiapp.herokuapp.com/ml/api/predict",json={'labels':attr})#("https://eiapp.herokuapp.com/ml/api/predict",json={'labels':attr})
             res=res.json()['res']
             
-            return render_template("jobs.html",jobs=json.loads(res))
+            return render_template("result.html",jobs=json.loads(res))
         
 
 
