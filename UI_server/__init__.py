@@ -63,7 +63,7 @@ def create_app():
             data=request.form.values()
             attr=list(data)
             print(attr)
-            res=req.post("http://localhost:5000/ml/api/predict",json={'labels':attr})
+            res=req.post("https://eiapp.herokuapp.com/ml/api/predict",json={'labels':attr})
             res=res.json()['res']
             
             return render_template("jobs.html",jobs=json.loads(res))
