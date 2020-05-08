@@ -20,7 +20,7 @@ def create_app():
     @uiapp.route("/signup")
     def admin():
         import json
-        return render_template('signup.html',status='status')
+        return render_template('register.html',status='status')
 
 
     @uiapp.route("/backend/create_user",methods=['POST'])
