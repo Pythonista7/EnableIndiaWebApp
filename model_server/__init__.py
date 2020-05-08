@@ -47,11 +47,11 @@ def create_app():
 
 
         if request.method=="POST":
-            print('DOING ML\n\n')
+            #print('DOING ML\n\n')
             data=request.get_json()['labels']
-            print("Check\ndata=",data,"\n\n")
+            #print("Check\ndata=",data,"\n\n")
             attr=list(data)
-            print("\n\n\nLabels = ",attr)
+            #print("\n\n\nLabels = ",attr)
             model=EIML()
             res=model.predict(attr)
             #print("CHECK@==>",res)
