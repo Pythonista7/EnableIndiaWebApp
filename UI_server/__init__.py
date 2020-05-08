@@ -4,6 +4,12 @@ import json
 
 import requests as req
 
+import sqlite3
+#connect to the database
+conn = sqlite3.connect('signupinfo.db')
+print("successfully connected") #check console log
+c = conn.cursor()
+
 def create_app():
     app_name = 'uiapp'
     print('app_name = {}'.format(app_name))
@@ -30,11 +36,20 @@ def create_app():
         # reference admin.html for the form attributes 
 
         print("All data from the form ",data) # check console log
-        
-        #retrive and validate password and confirm_password if both dont match redo form
-        # 
-        #use a sqlite or other DB to store data entered in the form
-        #
+        name = request.form['name']
+        email = request.form['email']
+        phno = request.form['phone']
+        username = request.form['username']
+        password = request.form['password']
+        cp = request.form['conf_password']
+        #check if password and con_password match
+        if cp == password:
+            #use a sqlite or other DB to store data entered in the form
+            sql = "INSERT INTO RegisteredUsers Name=?, Email=?, PhoneNumber=?, Username=?, Password=?"
+            c.execute(sql, (name, email, phno, username, password))
+            conn.commit()
+        else:
+            scope.error="Error" #copied this from signup.html
         # need destination template to render success(Log In form) and failure of signup (Redo the same signup form)
 
         return redirect("/login")
@@ -50,8 +65,14 @@ def create_app():
             username=request.form["username"]
             password=request.form["password"]
             #write code to verify user is already registered and validate login
-            #possibly add a cookie to persisten login session
-            return redirect("/home")
+            validate='SELECT * FROM RegisteredUsers WHERE Username=? AND Password=?'
+            c.execute(validate, (username, password))
+            credentials=c.fetchall()
+            if credentials != '\0':
+                return redirect("/home") #login successful
+            else:
+                print('Invalid username or password') #idk what to do here, take input again
+            #possibly add a cookie to persisten login session 
 
     @uiapp.route("/home",methods=["GET","POST"])
     def home_view():	
