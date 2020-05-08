@@ -20,7 +20,7 @@ The first 2 steps are same as in master branch.
  
  **Note : It is required to multithread the gunicorn instance else post requests to the ml-api will be stalled and timeout without successful termination.
 
-4. Open browser at url specified in the prompt. That is  `http://127.0.0.1:8080`<br> 
+4. Open browser at url specified in the prompt. That is  `http://127.0.0.1:5000`<br> 
 
 ## URL Map
 <br>
