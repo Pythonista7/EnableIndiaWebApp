@@ -1,1 +1,5 @@
 env/
+__pycache__/
+UI_server/__pycache__/
+model_server/__pycache__/
+Readme.pdf
