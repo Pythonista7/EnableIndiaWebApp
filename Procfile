@@ -1,1 +1,1 @@
-web: gunicorn wsgi_both:application
+web: gunicorn wsgi_both:application --threads 5
