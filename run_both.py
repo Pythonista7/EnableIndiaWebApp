@@ -16,6 +16,7 @@ if __name__ == '__main__':
         hostname='localhost',
         port=5000,
         application=application,
+        threaded=True,
         use_reloader=True,
         use_debugger=True,
         use_evalex=True)

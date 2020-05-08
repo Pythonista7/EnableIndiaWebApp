@@ -31,7 +31,7 @@ def create_app():
             file_data = "could not read file"
         return jsonify(file_data)
 
-    @mlapp.route("/api/predict",methods=["POST","GET"])
+    @mlapp.route("/api/predict",methods=["POST"])
     def predict():	
         # if request.method=='GET':
         #     data=request.form.values()

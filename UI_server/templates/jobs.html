@@ -1,0 +1,16 @@
+<!DOCTYPE HTML">
+<html>
+<body>
+
+<h2>JOBS</h2> 
+    <div class="container">
+        <a href="/home">Try again</a>
+    </div>
+    {% for rank,job in jobs.items() %}
+        <p>{{rank|int +1}}. {{job[1]}}  </p>
+    {% endfor %}
+    
+    <br><br>
+   
+</body>
+</html>
