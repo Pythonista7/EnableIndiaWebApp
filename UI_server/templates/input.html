@@ -75,8 +75,8 @@ body {
 								
 								<select name= attributes3 class="form-control" >
 									{% for ele in data %}
-									{% if 'disability_sub_type_' in ele%}
-									<option value= "{{ele}}" SELECTED>{{ele.replace('disability_sub_type_','')}}</option>"
+									{% if 'disability_type_' in ele%}
+									<option value= "{{ele}}" SELECTED>{{ele.replace('disability_type_','')}}</option>"
 									{% endif %}
 									{% endfor %}
 								</select>
@@ -92,8 +92,8 @@ body {
                                 <span class="input-group-addon"><i class="fa fa-bars" aria-hidden="true"></i></span>
 								<select name= attributes4 class="form-control">
 									{% for ele in data %}
-									{%if 'disability_type_' in ele %}
-									<option value= "{{ele}}" SELECTED>{{ele.replace('disability_type_','')}}</option>"
+									{%if 'disability_sub_type_' in ele %}
+									<option value= "{{ele}}" SELECTED>{{ele.replace('disability_sub_type_','')}}</option>"
 									{% endif %}
 									{% endfor %}
 								</select>
